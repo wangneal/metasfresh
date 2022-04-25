@@ -66,7 +66,7 @@ Map build(
                 // TODO: put alls jaspers&SQLs into their respective Docker images within the backend-build. Then we only need to deploy a few selected individual files; see frontend's build.grooy for how to do that			// maven.test.failure.ignore=true: continue if tests fail, because we want a full report.
                 // about -Dmetasfresh.assembly.descriptor.version: the versions plugin can't update the version of our shared assembly descriptor de.metas.assemblies. Therefore we need to provide the version from outside via this property
                 // about -T 2C: it means "run with 2 threads per CPU"; note that for us this is highly experimental
-                sh "mvn --settings ${mvnConf.settingsFile} ${multithreadParam} --file ${mvnConf.pomFile} --batch-mode -Dmaven.test.failure.ignore=true -Dmetasfresh.assembly.descriptor.version=${env.MF_VERSION} ${mvnConf.resolveParams} ${mvnConf.deployParam} clean deploy"
+                sh "mvn --settings ${mvnConf.settingsFile} ${multithreadParam} --file ${mvnConf.pomFile} --batch-mode -Dmetasfresh.assembly.descriptor.version=${env.MF_VERSION} ${mvnConf.resolveParams} ${mvnConf.deployParam} clean deploy"
 
                 final DockerConf reportDockerConf = new DockerConf(
                         'metasfresh-report', // artifactName
